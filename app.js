@@ -5,7 +5,7 @@ var moment = require('moment');
 var isUnix = false;
 var isNatural = false;
 
-var port = process.env.PORT || 5000;
+app.set('port', (process.env.PORT || 5000));
 
 function isDate(string){
   if (moment(string, "MMMM DD, YYYY", true).isValid()){
@@ -35,4 +35,6 @@ app.get('/:query', function(req, res){
   res.send(obj);
 });
 
-app.listen(port);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
