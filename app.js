@@ -5,6 +5,8 @@ var moment = require('moment');
 var isUnix = false;
 var isNatural = false;
 
+var port = process.env.PORT || 5000;
+
 function isDate(string){
   if (moment(string, "MMMM DD, YYYY", true).isValid()){
     isNatural = true;
@@ -33,4 +35,4 @@ app.get('/:query', function(req, res){
   res.send(obj);
 });
 
-app.listen(5000);
+app.listen(port);
