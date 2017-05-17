@@ -9,10 +9,12 @@ app.set('port', (process.env.PORT || 5000));
 
 function isDate(string){
   if (moment(string, "MMMM DD, YYYY", true).isValid()){
+    console.log("Natural!");
     isNatural = true;
     return true;
   }
-  if (moment(string, "x", true).isValid()){
+  if (moment(string, "X", true).isValid()){
+    console.log("UNIX!");
     isUnix = true;
     return true;
   }
@@ -29,7 +31,7 @@ app.get('/:query', function(req, res){
   if (isDate(query) == true){
     if(isUnix){
       obj.unix = query;
-      obj.natural = moment(query, "x", true).format("MMMM DD, YYYY");
+      obj.natural = moment(query, "X", true).format("MMMM DD, YYYY");
     }
     if(isNatural){
       obj.unix = moment(query, "MMMM DD, YYYY", true).format("X");
