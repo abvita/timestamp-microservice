@@ -19,6 +19,10 @@ function isDate(string){
   return false;
 }
 
+app.get('/', function(req, res){
+  res.send("Timestamp Microservice - Send query to root in either Unix epoch (ms) format or natural language.")
+})
+
 app.get('/:query', function(req, res){
   var query = req.params.query;
   var obj = {"unix": null, "natural": null};
